@@ -1,3 +1,3 @@
 Movie Website
 
-Tailwindcss / React / Redux Toolkit
+Tailwindcss / React / Redux Toolkit / Firebase

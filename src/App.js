@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-3xl text-blue-800 font-bold text-center'>Movie Website</h1>
-    </div>
+    <>
+      <h1 className="text-3xl text-blue-800 font-bold text-center font-mserrat">
+        Movie Website
+      </h1>
+    </>
   );
 };
 
