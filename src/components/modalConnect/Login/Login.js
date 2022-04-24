@@ -4,10 +4,14 @@ function Login({ toggle }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="h-screen bg-black w-full py-12 px-4">
       <div className="flex flex-col items-center justify-center">
-        <div className="bg-white shadow rounded-lg lg:w-1/3 md:w-1/2 w-[90%] p-10 absolute top-[25%] left-1/2 -translate-x-1/2">
+        <div className="bg-white shadow rounded-lg lg:w-1/3 md:w-1/2 w-[90%] p-8 absolute top-[25%] left-1/2 -translate-x-1/2">
           <p className="text-2xl font-extrabold leading-6 text-gray-800">
             Login to your account
           </p>
@@ -21,32 +25,39 @@ function Login({ toggle }) {
               Sign up here
             </span>
           </p>
-          <div className="mt-6">
-            <label className="text-sm font-medium leading-none text-gray-800">
-              Email
-            </label>
-            <input
-              type="email"
-              className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-            />
-          </div>
-          <div className="mt-6  w-full">
-            <label className="text-sm font-medium leading-none text-gray-800">
-              Password
-            </label>
-            <div className="relative flex items-center justify-center">
+          <form onSubmit={handleSubmit}>
+            <div className="mt-6">
+              <label className="text-sm font-medium leading-none text-gray-800">
+                Email
+              </label>
               <input
-                aria-label="enter Password"
-                type="password"
-                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                type="email"
+                className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
-          </div>
-          <div className="mt-8">
-            <button className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
-              Login
-            </button>
-          </div>
+            <div className="mt-3  w-full">
+              <label className="text-sm font-medium leading-none text-gray-800">
+                Password
+              </label>
+              <div className="relative flex items-center justify-center">
+                <input
+                  type="password"
+                  className="bg-gray-200 border rounded focus:outline-none text-sm font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-8">
+              <button className="text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+                Login
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
