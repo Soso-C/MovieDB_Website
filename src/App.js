@@ -1,12 +1,19 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import ModalConnect from "./components/modalConnect/ModalConnect";
 
 const App = () => {
   return (
-    <>
-      <h1 className="text-3xl text-blue-800 font-bold text-center font-mserrat">
-        Movie Website
-      </h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ModalConnect />} />
+      </Routes>
+    </Router>
   );
 };
 
