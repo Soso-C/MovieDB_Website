@@ -21,13 +21,13 @@ export default function Navbar() {
         <div className="flex flex-row-reverse hidden md:flex">
           <button
             className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
-            onClick={navigate("/login")}
+            onClick={() => navigate("/login")}
           >
             Sign In
           </button>
           <button
             className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
-            onClick={navigate("/register")}
+            onClick={() => navigate("/register")}
           >
             Sign up
           </button>

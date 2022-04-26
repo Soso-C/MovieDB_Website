@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../utils/firebase.config";
 
 function Signup() {
@@ -15,6 +15,8 @@ function Signup() {
     email: "",
     password: "",
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,9 +36,16 @@ function Signup() {
   };
 
   return (
-    <div className="h-screen bg-slate-700 w-full py-12 px-4">
-      <div className="flex flex-col items-center justify-center">
-        <div className="bg-white shadow rounded-lg lg:w-1/3 md:w-1/2 w-[90%] p-8 absolute top-[25%] left-1/2 -translate-x-1/2">
+    <div className="h-screen bg-slate-700 w-full py-4 px-4 flex flex-col">
+      <div
+        className="bg-gray-200 rounded-[50%] w-40 h-40 flex flex-col items-center justify-center mx-auto cursor-pointer"
+        onClick={() => navigate("/")}
+      >
+        <i class="fa-solid fa-film flex justify-center items-center text-3xl"></i>
+        <h1 className="text-center text-3xl font-bold">SCMovie</h1>
+      </div>
+      <div className="flex flex-col items-center justify-center mt-12">
+        <div className="bg-white shadow rounded-lg lg:w-1/3 md:w-1/2 w-[90%] p-8">
           <p className="text-2xl font-extrabold leading-6 text-gray-800">
             Create your account
           </p>
