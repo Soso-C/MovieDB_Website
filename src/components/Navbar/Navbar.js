@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../../utils/firebase.config";
 export default function Navbar() {
   let navigate = useNavigate();
+  const userinfo = useSelector((state) => state.user.user);
+
+  const handleLogout = async () => {
+    await signOut(auth).then((logout) => {
+      navigate("/login");
+    });
+  };
 
   return (
     <div className="bg-gray-900 w-full">
@@ -21,18 +31,37 @@ export default function Navbar() {
           <i className="fas fa-bars text-white w-10 h-10 flex justify-center items-center"></i>
         </button>
         <div className="flex flex-row-reverse hidden md:flex">
-          <button
-            className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
-            onClick={() => navigate("/login")}
-          >
-            Sign In
-          </button>
-          <button
-            className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
-            onClick={() => navigate("/register")}
-          >
-            Sign up
-          </button>
+          {userinfo === null ? (
+            <>
+              <button
+                className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
+                onClick={() => navigate("/login")}
+              >
+                Sign In
+              </button>
+              <button
+                className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
+                onClick={() => navigate("/register")}
+              >
+                Sign up
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="text-red-600 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
+                onClick={handleLogout}
+              >
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
+              <button
+                className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-full hover:bg-gray-200"
+                onClick={() => navigate("/")}
+              >
+                <i class="fa-solid fa-user"></i>
+              </button>
+            </>
+          )}
         </div>
       </nav>
     </div>

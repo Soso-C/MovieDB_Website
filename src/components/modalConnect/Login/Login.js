@@ -1,12 +1,27 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../utils/firebase.config";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password).then(
+        (login) => {
+          alert("Connection réussie");
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+      setError(true);
+    }
   };
 
   const navigate = useNavigate();
@@ -14,7 +29,7 @@ function Login() {
   return (
     <div className="h-screen bg-slate-800 w-full pt-6 px-4 flex flex-col md:py-12">
       <div
-        className="bg-gray-200 rounded-[50%] w-32 h-32 flex flex-col items-center justify-center mx-auto cursor-pointer mb-8"
+        className="bg-white rounded-[50%] w-32 h-32 flex flex-col items-center justify-center mx-auto cursor-pointer mb-8"
         onClick={() => navigate("/")}
       >
         <i className="fa-solid fa-film flex justify-center items-center text-2xl"></i>
@@ -62,6 +77,9 @@ function Login() {
                 />
               </div>
             </div>
+            <span className="block text-red-600">
+              {error && "Email ou mot de passe invalide"}
+            </span>
             <div className="mt-8">
               <button className="text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
                 Login

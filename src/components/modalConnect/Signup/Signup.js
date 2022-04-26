@@ -39,7 +39,7 @@ function Signup() {
   return (
     <div className="h-screen bg-slate-800 w-full pt-6 pb-2 px-4 flex flex-col md:py-12">
       <div
-        className="bg-gray-200 rounded-[50%] w-32 h-32 flex flex-col items-center justify-center mx-auto cursor-pointer mb-8"
+        className="bg-white rounded-[50%] w-32 h-32 flex flex-col items-center justify-center mx-auto cursor-pointer mb-8"
         onClick={() => navigate("/")}
       >
         <i className="fa-solid fa-film flex justify-center items-center text-2xl"></i>
