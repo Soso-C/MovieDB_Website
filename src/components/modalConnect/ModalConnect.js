@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import Login from "./Login/Login";
-import Signup from "./Signup/Signup";
+// import React, { useState } from "react";
+// import Login from "./Login/Login";
+// import Signup from "./Signup/Signup";
 
-const ModalConnect = () => {
-  const [toggleLogin, setToggleLogin] = useState(true);
+// const ModalConnect = () => {
+//   const [toggleLogin, setToggleLogin] = useState(true);
 
-  const toggleLog = () => {
-    setToggleLogin(!toggleLogin);
-  };
+//   const toggleLog = () => {
+//     setToggleLogin(!toggleLogin);
+//   };
 
-  return (
-    <>
-      {toggleLogin ? (
-        <Login toggle={toggleLog} />
-      ) : (
-        <Signup toggle={toggleLog} />
-      )}
-    </>
-  );
-};
+//   return (
+//     <>
+//       {toggleLogin ? (
+//         <Login toggle={toggleLog} />
+//       ) : (
+//         <Signup toggle={toggleLog} />
+//       )}
+//     </>
+//   );
+// };
 
-export default ModalConnect;
+// export default ModalConnect;

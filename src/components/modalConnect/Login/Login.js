@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-function Login({ toggle }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,7 +10,7 @@ function Login({ toggle }) {
   };
 
   return (
-    <div className="h-screen bg-black w-full py-12 px-4">
+    <div className="h-screen bg-slate-700 w-full py-12 px-4">
       <div className="flex flex-col items-center justify-center">
         <div className="bg-white shadow rounded-lg lg:w-1/3 md:w-1/2 w-[90%] p-8 absolute top-[25%] left-1/2 -translate-x-1/2">
           <p className="text-2xl font-extrabold leading-6 text-gray-800">
@@ -17,13 +18,13 @@ function Login({ toggle }) {
           </p>
           <p className="text-sm mt-4 font-medium leading-none text-gray-500">
             Dont have account?{" "}
-            <span
+            <Link
               className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer hover:text-blue-800"
-              onClick={toggle}
+              to={"/register"}
             >
               {" "}
               Sign up here
-            </span>
+            </Link>
           </p>
           <form onSubmit={handleSubmit}>
             <div className="mt-6">
