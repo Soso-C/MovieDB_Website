@@ -27,8 +27,9 @@ function Signup() {
           await userAuth.user.updateProfile({
             displayName: formValues.pseudo,
           });
-          console.log(userAuth);
           setformValues(clearState);
+          alert("Account created with success")
+          navigate("/");
         });
     } catch (error) {
       console.log(error);
