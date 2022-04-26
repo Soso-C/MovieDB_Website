@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 export default function Navbar() {
   let navigate = useNavigate();
 
   return (
     <div className="bg-gray-900 w-full">
       <nav className="max-w-7xl mx-auto flex flex-row items-center p-3 justify-between shadow-xs border-b-2 border-b-slate-900 h-[100px] font-mserrat">
-        <h1 className="mr-1 text-white font-bold md:text-lg">SCMovie</h1>
+        <Link to={"/"}>
+          <h1 className="mr-1 text-white font-bold md:text-lg">SCMovie</h1>
+        </Link>
         <div className="w-36 md:w-1/4 h-10 bg-gray-200 border border-gray-300 text-sm rounded-full flex">
           <input
             type="search"
