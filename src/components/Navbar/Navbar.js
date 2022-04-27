@@ -52,13 +52,13 @@ export default function Navbar() {
                 className="text-red-600 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-md hover:bg-gray-200"
                 onClick={handleLogout}
               >
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
               </button>
               <button
                 className="text-indigo-800 text-center font-medium bg-white px-4 py-2 m-2 cursor-pointer rounded-full hover:bg-gray-200"
                 onClick={() => navigate("/")}
               >
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
               </button>
             </>
           )}
