@@ -27,10 +27,11 @@ export default function Navbar() {
           />
           <i className="fas fa-search m-3 text-lg text-gray-700 w-4 h-4 flex items-center justify-center"></i>
         </div>
+        {/* BurgerIcons */}
         <button className="flex flex-row-reverse mr-4 ml-4 md:hidden">
           <i className="fas fa-bars text-white w-10 h-10 flex justify-center items-center"></i>
         </button>
-        <div className="flex flex-row-reverse hidden md:flex">
+        <div className="flex flex-row-reverse hidden items-center md:flex">
           {userinfo === null ? (
             <>
               <button
@@ -60,6 +61,12 @@ export default function Navbar() {
               >
                 <i className="fa-solid fa-user"></i>
               </button>
+              <Link
+                to={"/favorite"}
+                className="text-md text-white font-bold mr-2"
+              >
+                Favorite
+              </Link>
             </>
           )}
         </div>
