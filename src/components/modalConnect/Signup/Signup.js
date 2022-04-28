@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../../utils/firebase.config";
+import { auth, db } from "../../../utils/firebase.config";
+import { addDoc, collection } from "firebase/firestore";
 
 function Signup() {
   const [formValues, setformValues] = useState({
@@ -18,8 +19,10 @@ function Signup() {
 
   const navigate = useNavigate();
 
+  // signup Firebase
   const handleSubmit = (e) => {
     e.preventDefault();
+
     try {
       auth
         .createUserWithEmailAndPassword(formValues.email, formValues.password)
@@ -27,10 +30,17 @@ function Signup() {
           await userAuth.user.updateProfile({
             displayName: formValues.pseudo,
           });
+          await addDoc(collection(db, "Users"), {
+            userid: userAuth.user.uid,
+            username: userAuth.user.displayName,
+            email: userAuth.user.email,
+            favoriteMovie: [],
+          });
           setformValues(clearState);
-          alert("Account created with success")
+          alert("Account created with success");
           navigate("/");
-        });
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }

@@ -4,15 +4,15 @@ import MovieCard from "./MovieCard";
 
 const PopularMovie = () => {
   const [movies, setMovies] = useState([]);
-  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_TMDB_KEY}&language=fr-Fr&page=1`;
+  const urlPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_TMDB_KEY}&language=fr-Fr&page=1`;
 
   useEffect(() => {
-    getMovies(url)
+    getMovies(urlPopular)
       .then((res) => {
         setMovies(res);
       })
       .catch((err) => console.log(err));
-  }, [url]);
+  }, [urlPopular]);
 
   return (
     <div className="max-w-7xl mx-auto pt-8 px-4">
