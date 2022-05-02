@@ -34,7 +34,7 @@ function Signup() {
             userid: userAuth.user.uid,
             username: userAuth.user.displayName,
             email: userAuth.user.email,
-            favoriteMovie: [],
+            favoriteMovies: [],
           });
           setformValues(clearState);
           alert("Account created with success");

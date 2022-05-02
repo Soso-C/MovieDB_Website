@@ -1,5 +1,5 @@
 import axios from "axios";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase.config";
 
 export async function getMovies(urlEndPoint) {
@@ -8,15 +8,28 @@ export async function getMovies(urlEndPoint) {
   return moviesResponse.data.results;
 }
 
-export async function getUser() {
-  const docRef = doc(db, "Users", "Rc8MNcxO6E5oPqbHZmXy");
-  const docSnap = await getDoc(docRef);
+// const docRef = doc(db, "Users", "Rc8MNcxO6E5oPqbHZmXy");
+// const docSnap = await getDoc(docRef);
 
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
-  return;
+// if (docSnap.exists()) {
+//   console.log("Document data:", docSnap.data());
+// } else {
+//   // doc.data() will be undefined in this case
+//   console.log("No such document!");
+// }
+// return;
+
+export async function getFavoriteMovies(uid) {
+  const querySnapshot = await getDocs(collection(db, "Users"));
+  const docList = [];
+  // doc.data() is never undefined for query doc snapshots
+  querySnapshot.forEach((doc) => {
+    docList.push(doc.data().userid , doc.data().favoriteMovie);
+  });
+
+  const result = docList.find((el) => el.userid === uid);
+  console.log(result);
+  console.log(docList);
+  return result
+  
 }

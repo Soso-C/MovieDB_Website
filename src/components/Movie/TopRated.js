@@ -17,7 +17,7 @@ const TopRated = () => {
   }, [urlTopRated]);
 
   return (
-    <div className="max-w-7xl mx-auto pt-8 px-4">
+    <div className="max-w-7xl mx-auto pt-8 px-4 mt-16">
       <h2 className="text-2xl text-white font-bold pt-6 mb-6">
         Top rated
         <i className="fa-solid fa-star text-yellow-400 text-xl ml-1"></i>

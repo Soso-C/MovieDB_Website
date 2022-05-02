@@ -14,9 +14,11 @@ const App = () => {
     setUser(currentUser);
   });
   return (
-    <Router>
-      <AppRoutes />
-    </Router>
+    <div className="bg-slate-700">
+      <Router>
+        <AppRoutes />
+      </Router>
+    </div>
   );
 };
 
