@@ -23,10 +23,9 @@ export default function Navbar() {
     e.preventDefault();
   };
 
-  // start mobile first plus facile
   return (
     <nav className="fixed top-0 w-full bg-zinc-900 items-center flex p-4 z-20">
-      <div className="flex justify-between items-center w-full flex-wrap md:flex-nowrap xl:px-24">
+      <div className="flex justify-between items-center w-full flex-wrap md:flex-nowrap md:max-w-7xl md:mx-auto">
         <Link
           to={"/"}
           className="hidden md:flex text-xl text-white font-bold cursor-pointer"
