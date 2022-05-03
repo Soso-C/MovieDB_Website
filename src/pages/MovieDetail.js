@@ -2,8 +2,8 @@ import React from "react";
 
 const MovieDetail = ({ movie }) => {
   return (
-    <div className="h-screen w-full">
-      <div className="bg-gray-300 rounded-lg max-w-7xl mt-10 mx-auto justify-center items-center flex h-[600px]">
+    <div className="h-screen w-full pt-48">
+      <div className="bg-gray-300 rounded-lg max-w-7xl mx-auto justify-center items-center flex h-[600px]">
         <div className="w-1/3 h-full rounded-l-lg">
           <div className="h-full">
             <img
@@ -23,7 +23,7 @@ const MovieDetail = ({ movie }) => {
               <i className="fa-solid fa-star px-0.5 text-yellow-400"></i>
             </span>
           </div>
-          <h2>tedt</h2>
+          <h2 className="px-8">Description : </h2>
         </div>
       </div>
     </div>

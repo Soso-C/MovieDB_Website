@@ -14,19 +14,13 @@ const SearchPage = () => {
   let navigate = useNavigate();
   const movies = useSelector((state) => state.movies.researchMovies);
   const dispatch = useDispatch();
-  // console.log(movies);
-  // console.log(pageMovie);
-
-  // const [page, setPage] = useState(1);
 
   const nextPage = () => {
-    let next = parseInt(pageMovie) + 1;
-    navigate(`/results/?movies=${searchMovie}&page=${next}`);
+    navigate(`/results/?movies=${searchMovie}&page=${++pageMovie}`);
   };
 
   const lastPage = () => {
-    let last = parseInt(pageMovie) - 1;
-    navigate(`/results/?movies=${searchMovie}&page=${last}`);
+    navigate(`/results/?movies=${searchMovie}&page=${--pageMovie}`);
   };
 
   useEffect(() => {
