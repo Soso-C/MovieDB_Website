@@ -3,7 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase.config";
+
 export default function Navbar() {
+  const [search, setSearch] = useState("");
+
   let navigate = useNavigate();
   const userinfo = useSelector((state) => state.user.user);
 
@@ -21,6 +24,7 @@ export default function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate(`/search/${search}`);
   };
 
   return (
@@ -47,11 +51,16 @@ export default function Navbar() {
           <input
             type="search"
             placeholder="Search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="px-4 w-full rounded-l-full rounded-r-full text-sm focus:outline-none"
           />
-          <i className="fas fa-search m-3 text-lg text-gray-700 w-4 h-4 flex items-center justify-center"></i>
+          <i
+            className="fas fa-search m-3 text-lg text-gray-700 w-4 h-4 flex items-center justify-center cursor-pointer"
+            onClick={handleSubmit}
+          ></i>
         </form>
-        {userinfo === null ? (
+        {!userinfo ? (
           <div
             className={`${
               toggle ? " flex" : " hidden"

@@ -6,6 +6,7 @@ import SignUp from "./components/modalConnect/Signup/Signup";
 import Navbar from "./components/Navbar/Navbar";
 import FavoriteMovie from "./components/Movie/FavoriteMovie";
 import MovieDetail from "./pages/MovieDetail";
+import SearchPage from "./components/Movie/SearchPage";
 const AppRoutes = () => {
   const location = useLocation();
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/favorite" element={<FavoriteMovie />} />
+        <Route path="/search/:query" element={<SearchPage />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />
       </Routes>

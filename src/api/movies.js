@@ -1,7 +1,8 @@
 import axios from "axios";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../utils/firebase.config";
 
+// Get Movies
 export async function getMovies(urlEndPoint) {
   const moviesResponse = await axios.get(urlEndPoint);
   if (!moviesResponse) return "sorry, couldn’t load movies";
@@ -32,4 +33,11 @@ export async function getFavoriteMovies(uid) {
   console.log(docList);
   return result
   
+}
+
+// Fetch Query Movies
+export async function getQueryMovies(urlEndpoint) {
+  const moviesResponse = await axios.get(urlEndpoint);
+  if (!moviesResponse) return "sorry, couldn’t load movies";
+  return moviesResponse.data.results;
 }
