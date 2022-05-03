@@ -18,7 +18,7 @@ const SearchPage = () => {
   // console.log(pageMovie);
 
   // const [page, setPage] = useState(1);
-  
+
   const nextPage = () => {
     let next = parseInt(pageMovie) + 1;
     navigate(`/results/?movies=${searchMovie}&page=${next}`);
@@ -54,7 +54,7 @@ const SearchPage = () => {
             className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
             onClick={lastPage}
           >
-            Last Page
+            <i class="fa-solid fa-arrow-left"></i>
           </button>
         )}
         <span className="font-bold">
@@ -65,7 +65,7 @@ const SearchPage = () => {
             className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
             onClick={nextPage}
           >
-            Next Page
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         )}
       </div>
