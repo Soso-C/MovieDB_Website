@@ -39,5 +39,5 @@ export async function getFavoriteMovies(uid) {
 export async function getQueryMovies(urlEndpoint) {
   const moviesResponse = await axios.get(urlEndpoint);
   if (!moviesResponse) return "sorry, couldn’t load movies";
-  return moviesResponse.data.results;
+  return moviesResponse.data;
 }

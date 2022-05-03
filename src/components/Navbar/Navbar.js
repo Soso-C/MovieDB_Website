@@ -6,9 +6,11 @@ import { auth } from "../../utils/firebase.config";
 
 export default function Navbar() {
   const [search, setSearch] = useState("");
+  const [toggle, setToggle] = useState(false);
+
+  const userinfo = useSelector((state) => state.user.user);
 
   let navigate = useNavigate();
-  const userinfo = useSelector((state) => state.user.user);
 
   const handleLogout = async () => {
     await signOut(auth).then((logout) => {
@@ -16,15 +18,13 @@ export default function Navbar() {
     });
   };
 
-  const [toggle, setToggle] = useState(false);
-
   const showNav = () => {
     setToggle(!toggle);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search/${search}`);
+    navigate(`/results/?movies=${search}&page=1`);
   };
 
   return (

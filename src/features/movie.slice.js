@@ -5,6 +5,7 @@ const movieSlice = createSlice({
   initialState: {
     movies: [],
     researchMovies: [],
+    pageMovie: 1,
   },
   reducers: {
     addMoviesToStore: (state, { payload }) => {

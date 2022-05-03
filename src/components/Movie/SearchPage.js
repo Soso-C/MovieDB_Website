@@ -1,15 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { researchMovies } from "../../features/movie.slice";
 import { getQueryMovies } from "../../api/movies";
 
 const SearchPage = () => {
-  const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchMovie = searchParams.get("movies") || "";
+  let pageMovie = searchParams.get("page") || "";
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_TMDB_KEY}&language=fr-Fr&query=${searchMovie}&page=${pageMovie}&include_adult=false`;
+
+  let navigate = useNavigate();
   const movies = useSelector((state) => state.movies.researchMovies);
   const dispatch = useDispatch();
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_TMDB_KEY}&language=fr-Fr&query=${params.query}&page=1&include_adult=false`;
+  // console.log(movies);
+  // console.log(pageMovie);
+
+  // const [page, setPage] = useState(1);
+  
+  const nextPage = () => {
+    let next = parseInt(pageMovie) + 1;
+    navigate(`/results/?movies=${searchMovie}&page=${next}`);
+  };
+
+  const lastPage = () => {
+    let last = parseInt(pageMovie) - 1;
+    navigate(`/results/?movies=${searchMovie}&page=${last}`);
+  };
 
   useEffect(() => {
     getQueryMovies(url)
@@ -17,16 +35,41 @@ const SearchPage = () => {
         dispatch(researchMovies(res));
       })
       .catch((err) => console.log(err));
-  }, [params, dispatch, url]);
+  }, [searchMovie, dispatch, pageMovie, url]);
 
   return (
-    <div className="flex flex-wrap gap-5 mx-auto justify-center items-center pt-28 max-w-7xl pb-12">
-      {movies ? (
-        movies.map((movie, index) => <MovieCard key={index} movie={movie} />)
-      ) : (
-        <span className="text-red-500 font-bold text-xl">Rien trouvé !</span>
-      )}
-    </div>
+    <>
+      <div className="flex flex-wrap gap-5 mx-auto justify-center items-center pt-28 max-w-7xl pb-14 relative">
+        {movies.results ? (
+          movies.results.map((movie, index) => (
+            <MovieCard key={index} movie={movie} />
+          ))
+        ) : (
+          <span className="text-red-500 font-bold text-xl">No result</span>
+        )}
+      </div>
+      <div className="flex justify-between max-w-7xl mx-auto px-12 pb-10">
+        {movies.page > 1 && (
+          <button
+            className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
+            onClick={lastPage}
+          >
+            Last Page
+          </button>
+        )}
+        <span className="font-bold">
+          Total results : {movies.total_results}
+        </span>
+        {movies.total_pages > 1 && movies.page !== movies.total_pages && (
+          <button
+            className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
+            onClick={nextPage}
+          >
+            Next Page
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

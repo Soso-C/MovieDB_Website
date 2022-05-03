@@ -19,7 +19,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/favorite" element={<FavoriteMovie />} />
-        <Route path="/search/:query" element={<SearchPage />} />
+        <Route path="/results" element={<SearchPage />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />
       </Routes>

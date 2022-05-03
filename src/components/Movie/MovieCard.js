@@ -28,7 +28,7 @@ const MovieCard = ({ movie }) => {
           </h4>
           <div className="flex justify-between items-baseline">
             <p className="text-white font-medium">
-              {movie.release_date.slice(0, 4)}
+              {movie.release_date?.slice(0, 4)}
             </p>
             {userinfo !== null ? (
               <button>
