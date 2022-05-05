@@ -1,11 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const userinfo = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-4 rounded-xl bg-slate-600 mb-3 relative">
+    <div
+      className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-4 rounded-xl bg-slate-600 mb-3 relative cursor-pointer"
+      onClick={() => navigate(`/movie/${movie.id}`)}
+    >
       <div className="flex flex-col">
         <div className="relative h-full w-full">
           <img

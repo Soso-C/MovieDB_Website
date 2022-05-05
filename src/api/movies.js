@@ -9,6 +9,12 @@ export async function getMovies(urlEndPoint) {
   return moviesResponse.data.results;
 }
 
+export const getMovieById = async (urlEndpoint) => {
+  const moviesResponse = await axios.get(urlEndpoint);
+  if (!moviesResponse) return "sorry, couldn’t load movies";
+  return moviesResponse.data;
+};
+
 // const docRef = doc(db, "Users", "Rc8MNcxO6E5oPqbHZmXy");
 // const docSnap = await getDoc(docRef);
 
@@ -25,14 +31,13 @@ export async function getFavoriteMovies(uid) {
   const docList = [];
   // doc.data() is never undefined for query doc snapshots
   querySnapshot.forEach((doc) => {
-    docList.push(doc.data().userid , doc.data().favoriteMovie);
+    docList.push(doc.data().userid, doc.data().favoriteMovie);
   });
 
   const result = docList.find((el) => el.userid === uid);
   console.log(result);
   console.log(docList);
-  return result
-  
+  return result;
 }
 
 // Fetch Query Movies
