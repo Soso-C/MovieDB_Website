@@ -12,12 +12,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password).then(
-        (login) => {
-          alert("Connection réussie");
-          navigate("/");
-        }
-      );
+      await signInWithEmailAndPassword(auth, email, password).then((login) => {
+        alert("Connection réussie");
+        navigate("/");
+      });
     } catch (error) {
       console.log(error.message);
       setError(true);

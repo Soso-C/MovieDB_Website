@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 import FavoriteMovie from "./components/Movie/FavoriteMovie";
 import MovieDetail from "./pages/MovieDetail";
 import SearchPage from "./components/Movie/SearchPage";
+import ProtectedRoutes from "./ProtectedRoutes";
+
 const AppRoutes = () => {
   const location = useLocation();
   return (
@@ -18,7 +20,15 @@ const AppRoutes = () => {
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
-        <Route path="/favorite" element={<FavoriteMovie />} />
+        <Route
+          path="/favorite"
+          element={
+            <ProtectedRoutes>
+              <FavoriteMovie />
+            </ProtectedRoutes>
+          }
+        />
+
         <Route path="/results" element={<SearchPage />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />

@@ -48,7 +48,7 @@ const SearchPage = () => {
             className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
             onClick={lastPage}
           >
-            <i class="fa-solid fa-arrow-left"></i>
+            <i className="fa-solid fa-arrow-left"></i>
           </button>
         )}
         <span className="font-bold">
@@ -59,7 +59,7 @@ const SearchPage = () => {
             className="py-2 p-2 bg-gray-50 rounded-lg font-bold"
             onClick={nextPage}
           >
-            <i class="fa-solid fa-arrow-right"></i>
+            <i className="fa-solid fa-arrow-right"></i>
           </button>
         )}
       </div>

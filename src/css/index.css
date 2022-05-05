@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Fonts */
 
 @import url("https://fonts.googleapis.com/css2?family=Hurricane&family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
 
 /********** searchbar **********/
 
