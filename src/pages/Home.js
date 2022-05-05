@@ -4,7 +4,7 @@ import TopRated from "../components/Movie/TopRated";
 
 const Home = () => {
   return (
-    <div className="bg-slate-800 h-full w-full pb-10">
+    <div className="h-full w-full pb-10 bg-slate-800">
       <TopRated />
       <PopularMovie />
     </div>

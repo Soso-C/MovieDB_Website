@@ -17,6 +17,7 @@ body,
   flex-direction: column;
 }
 
+
 /********** searchbar **********/
 
 input[type="search"]::-webkit-search-decoration,

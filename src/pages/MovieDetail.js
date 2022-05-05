@@ -17,7 +17,7 @@ const MovieDetail = () => {
 
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center">
-      <div className="bg-gray-300 rounded-lg w-[60%] justify-center items-center flex h-[600px]">
+      <div className="bg-gray-300 rounded-lg w-[60%] justify-center items-center flex h-[550px]">
         <div className="w-1/3 h-full rounded-l-lg">
           <div className="h-full">
             <img
@@ -28,7 +28,7 @@ const MovieDetail = () => {
           </div>
         </div>
         <div className="w-2/3 h-full flex-col justify-between">
-          <div className="flex justify-center items-center mb-16 mt-8">
+          <div className="flex justify-center items-center mb-12 mt-6">
             <h2 className="font-bold text-3xl text-black text-center">
               {movie.title}
             </h2>
@@ -37,9 +37,9 @@ const MovieDetail = () => {
               <i className="fa-solid fa-star px-0.5 text-yellow-400"></i>
             </span>
           </div>
-          <p className="px-6 font-bold text-xl mb-8">Synopsis :</p>
+          <p className="px-6 font-bold text-xl mb-6">Synopsis :</p>
           <p className="font-medium px-8">{movie.overview}</p>
-          <p className="px-6 font-bold text-xl mt-8">
+          <p className="px-6 font-bold text-xl mt-6">
             Date : {movie.release_date?.slice(0, 4)}
           </p>
         </div>

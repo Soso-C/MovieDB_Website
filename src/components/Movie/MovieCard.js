@@ -8,7 +8,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div
-      className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-4 rounded-xl bg-slate-600 mb-3 relative cursor-pointer"
+      className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-[0.5rem] rounded-xl bg-slate-600 mb-3 relative cursor-pointer"
       onClick={() => navigate(`/movie/${movie.id}`)}
     >
       <div className="flex flex-col">
@@ -28,7 +28,7 @@ const MovieCard = ({ movie }) => {
         </div>
 
         <div className="mt-[0.3em]">
-          <h4 className="font-bold text-[1.1em] overflow-hidden whitespace-nowrap text-ellipsis text-white">
+          <h4 className="font-bold text-[1.1em] overflow-hidden whitespace-nowrap text-ellipsis text-white pb-1">
             {movie.title}
           </h4>
           <div className="flex justify-between items-baseline">
