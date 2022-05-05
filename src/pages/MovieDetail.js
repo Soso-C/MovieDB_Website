@@ -28,18 +28,18 @@ const MovieDetail = () => {
           </div>
         </div>
         <div className="w-2/3 h-full flex-col justify-between">
-          <div className="flex justify-center items-center mb-16">
-            <h2 className="font-bold text-3xl text-black text-center mt-2">
+          <div className="flex justify-center items-center mb-16 mt-8">
+            <h2 className="font-bold text-3xl text-black text-center">
               {movie.title}
             </h2>
-            <span className="text-blue-600 text-xl ml-3 font-medium mt-3">
+            <span className="text-blue-600 text-xl ml-3 font-medium">
               {movie.vote_average}
               <i className="fa-solid fa-star px-0.5 text-yellow-400"></i>
             </span>
           </div>
-          <p className="px-8 font-bold text-xl mb-8">Synopsis :</p>
+          <p className="px-6 font-bold text-xl mb-8">Synopsis :</p>
           <p className="font-medium px-8">{movie.overview}</p>
-          <p className="px-8 font-bold text-xl mt-8">
+          <p className="px-6 font-bold text-xl mt-8">
             Date : {movie.release_date?.slice(0, 4)}
           </p>
         </div>
