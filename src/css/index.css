@@ -15,8 +15,8 @@ body,
 #root {
   display: flex;
   flex-direction: column;
+  background-color: #1e293b;
 }
-
 
 /********** searchbar **********/
 

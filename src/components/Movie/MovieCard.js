@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../../utils/firebase.config";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 const MovieCard = ({ movie }) => {
   const userinfo = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
+
 
   const addFavorite = async () => {
     const userTarget = doc(db, "users", userinfo.email);
     if (userinfo?.email) {
       setLike(!like);
-      setSaved(true);
       await updateDoc(userTarget, {
         favoriteMovies: arrayUnion({
           movie,
@@ -23,6 +23,19 @@ const MovieCard = ({ movie }) => {
       });
     }
   };
+
+  const deleteFavorite = async (id) => {
+    const userTarget = doc(db, "users", userinfo.email);
+    try {
+      // const result = favMovies.filter()
+    }
+    catch (error){
+      console.log(error);
+    }
+
+  }
+
+  
 
   return (
     <div className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-[0.5rem] rounded-xl bg-slate-600 mb-3 relative">
@@ -53,7 +66,7 @@ const MovieCard = ({ movie }) => {
             <p className="text-white font-medium">
               {movie.release_date?.slice(0, 4)}
             </p>
-            {userinfo !== null ? (
+            {location.pathname !== "/favorite" && userinfo !== null ? (
               <button onClick={addFavorite}>
                 {like ? (
                   <i className="fa-solid fa-heart text-red-500 hover:scale-150 ease-out delay-75"></i>
@@ -62,7 +75,9 @@ const MovieCard = ({ movie }) => {
                 )}
               </button>
             ) : (
-              <div></div>
+              <button onClick={deleteFavorite(movie.id)}>
+                <i class="fa-solid fa-trash text-red-500"></i>
+              </button>
             )}
           </div>
         </div>

@@ -16,9 +16,24 @@ const FavoriteMovie = () => {
       dispatch(addFavoriteMovie(doc.data()?.favoriteMovies));
     });
   }, [useremail]);
+
+  const deleteFavorite = async (id) => {
+    const userTarget = doc(db, "users", useremail);
+    try {
+      const result = favMovies.filter()
+    }
+    catch (error){
+      console.log(error);
+    }
+
+  }
+
   return (
-    <div className="pt-32 font-bold flex flex-wrap h-screen gap-5 justify-center mx-auto max-w-7xl">
-      {favMovies && favMovies.map((movie) => <MovieCard movie={movie.movie} />)}
+    <div className="pt-32 flex flex-wrap h-full gap-5 justify-center mx-auto max-w-7xl">
+      {favMovies &&
+        favMovies.map((movie) => (
+          <MovieCard movie={movie.movie} key={movie.movie.id} delete={deleteFavorite}/>
+        ))}
     </div>
   );
 };
