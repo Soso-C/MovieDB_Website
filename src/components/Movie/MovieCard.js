@@ -7,8 +7,8 @@ import { delFavoriteMovie } from "../../features/movie.slice";
 
 const MovieCard = ({ movie }) => {
   const userinfo = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
   const favMovies = useSelector((state) => state.movies.favoriteMovies);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,8 +32,7 @@ const MovieCard = ({ movie }) => {
       const result = favMovies.filter((fav) => fav.movie.id !== movieID);
       await updateDoc(userTarget, {
         favoriteMovies: result,
-      });
-      dispatch(delFavoriteMovie(result));
+      }).then(() => dispatch(delFavoriteMovie(result)));
     } catch (error) {
       console.log(error);
     }
