@@ -17,8 +17,18 @@ const movieSlice = createSlice({
     addFavoriteMovie: (state, { payload }) => {
       state.favoriteMovies = payload;
     },
+    delFavoriteMovie: (state, { payload }) => {
+      state.favoriteMovies = state.favoriteMovies.filter(
+        (movie) => movie.movie.id !== payload
+      );
+    },
   },
 });
 
-export const { addMoviesToStore, researchMovies, addFavoriteMovie } = movieSlice.actions;
+export const {
+  addMoviesToStore,
+  researchMovies,
+  addFavoriteMovie,
+  delFavoriteMovie,
+} = movieSlice.actions;
 export default movieSlice.reducer;

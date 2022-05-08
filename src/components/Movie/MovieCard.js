@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../../utils/firebase.config";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { delFavoriteMovie } from "../../features/movie.slice";
 
 const MovieCard = ({ movie }) => {
   const userinfo = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const favMovies = useSelector((state) => state.movies.favoriteMovies);
   const navigate = useNavigate();
   const location = useLocation();
 
   const [like, setLike] = useState(false);
-
 
   const addFavorite = async () => {
     const userTarget = doc(db, "users", userinfo.email);
@@ -24,18 +26,18 @@ const MovieCard = ({ movie }) => {
     }
   };
 
-  const deleteFavorite = async (id) => {
+  const deleteFavorite = async (movieID) => {
     const userTarget = doc(db, "users", userinfo.email);
     try {
-      // const result = favMovies.filter()
-    }
-    catch (error){
+      const result = favMovies.filter((fav) => fav.movie.id !== movieID);
+      await updateDoc(userTarget, {
+        favoriteMovies: result,
+      });
+      dispatch(delFavoriteMovie(result));
+    } catch (error) {
       console.log(error);
     }
-
-  }
-
-  
+  };
 
   return (
     <div className="flex flex-col justify-between min-w-[220px] w-[220px] h-[360px] p-[0.5rem] rounded-xl bg-slate-600 mb-3 relative">
@@ -75,7 +77,7 @@ const MovieCard = ({ movie }) => {
                 )}
               </button>
             ) : (
-              <button onClick={deleteFavorite(movie.id)}>
+              <button onClick={() => deleteFavorite(movie.id)}>
                 <i class="fa-solid fa-trash text-red-500"></i>
               </button>
             )}
