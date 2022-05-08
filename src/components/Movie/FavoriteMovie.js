@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getFavoriteMovies } from "../../api/movies";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../utils/firebase.config";
+import { useDispatch, useSelector } from "react-redux";
+import MovieCard from "./MovieCard";
+import { addFavoriteMovie } from "../../features/movie.slice";
 
 const FavoriteMovie = () => {
-  const [favorite, setFavorite] = useState({});
-  const userid = useSelector((state) => state.user.user.uid);
+  const useremail = useSelector((state) => state.user.user.email);
+  const favMovies = useSelector((state) => state.movies.favoriteMovies);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getFavoriteMovies(userid)
-      .then((res) => setFavorite(res[0].favoriteMovies))
-      .catch((err) => console.log(err));
-    console.log(favorite);
-  }, [userid]);
+    onSnapshot(doc(db, "users", useremail), (doc) => {
+      dispatch(addFavoriteMovie(doc.data()?.favoriteMovies));
+    });
+  }, [useremail]);
   return (
-    <div className="pt-20 font-bold">
-      <div>{favorite[0]}</div>
-      <div>{favorite[1]}</div>
-      <div>{favorite[2]}</div>
+    <div className="pt-32 font-bold flex flex-wrap h-screen gap-5 justify-center mx-auto max-w-7xl">
+      {favMovies && favMovies.map((movie) => <MovieCard movie={movie.movie} />)}
     </div>
   );
 };

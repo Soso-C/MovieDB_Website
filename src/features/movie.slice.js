@@ -5,7 +5,7 @@ const movieSlice = createSlice({
   initialState: {
     movies: [],
     researchMovies: [],
-    pageMovie: 1,
+    favoriteMovies: [],
   },
   reducers: {
     addMoviesToStore: (state, { payload }) => {
@@ -14,8 +14,11 @@ const movieSlice = createSlice({
     researchMovies: (state, { payload }) => {
       state.researchMovies = payload;
     },
+    addFavoriteMovie: (state, { payload }) => {
+      state.favoriteMovies = payload;
+    },
   },
 });
 
-export const { addMoviesToStore, researchMovies } = movieSlice.actions;
+export const { addMoviesToStore, researchMovies, addFavoriteMovie } = movieSlice.actions;
 export default movieSlice.reducer;
