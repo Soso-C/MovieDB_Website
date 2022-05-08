@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../../../utils/firebase.config";
-import { addDoc, collection } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 function Signup() {
   const [formValues, setformValues] = useState({
@@ -30,7 +30,7 @@ function Signup() {
           await userAuth.user.updateProfile({
             displayName: formValues.pseudo,
           });
-          await addDoc(collection(db, "Users"), {
+          await setDoc(doc(db, "users", formValues.email), {
             userid: userAuth.user.uid,
             username: userAuth.user.displayName,
             email: userAuth.user.email,

@@ -16,6 +16,7 @@ const FavoriteMovie = () => {
     <div className="pt-20 font-bold">
       <div>{favorite[0]}</div>
       <div>{favorite[1]}</div>
+      <div>{favorite[2]}</div>
     </div>
   );
 };
