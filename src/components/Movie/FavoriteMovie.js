@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../utils/firebase.config";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,22 +17,11 @@ const FavoriteMovie = () => {
     });
   }, [useremail]);
 
-  const deleteFavorite = async (id) => {
-    const userTarget = doc(db, "users", useremail);
-    try {
-      const result = favMovies.filter()
-    }
-    catch (error){
-      console.log(error);
-    }
-
-  }
-
   return (
     <div className="pt-32 flex flex-wrap h-full gap-5 justify-center mx-auto max-w-7xl">
       {favMovies &&
         favMovies.map((movie) => (
-          <MovieCard movie={movie.movie} key={movie.movie.id} delete={deleteFavorite}/>
+          <MovieCard movie={movie.movie} key={movie.movie.id} />
         ))}
     </div>
   );
